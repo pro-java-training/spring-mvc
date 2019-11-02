@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -18,8 +19,16 @@ import java.util.Map;
 public class HelloController {
 
     @RequestMapping("/")
-    public String home() {
-        return "searchPage";
+    public String home(Model model) {
+        model.addAttribute("message", "hello, world");
+
+        List<String> articles = new ArrayList<>();
+        articles.add("hello, world");
+        articles.add("hello, java");
+        articles.add("hello, spring");
+        model.addAttribute("articles", articles);
+
+        return "hello";
     }
 
     @RequestMapping("/result")
